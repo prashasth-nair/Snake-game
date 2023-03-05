@@ -153,7 +153,7 @@ def main():
             with open("high-score.txt","wt") as f:
                 f.write(str(hiscore))
             gameWindow.fill(black)
-            text_screen("Game over! Press Enter To continue", red, 200, 180)
+            text_screen("Game over! Press Enter To continue\n", red, 200, 180)
             text_screen(f"Total Score: {score}", green , 350, 240)
             text_screen(f"High Score: {hiscore}", red , 350, 280)
             for event in pygame.event.get():

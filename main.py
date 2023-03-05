@@ -44,15 +44,19 @@ def welcome():
         gameWindow.fill(black)
         text_screen("Welcome to Snakes", white,screen_width/3,screen_height/6)
         text_screen("Press Enter To Start", white,300,500)
+        pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit_game = True
+                pygame.quit()
+                
+                break
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
+                    exit_game = True
                     game_loop()
-
-        pygame.display.update()
-        clock.tick(fps)
+        # clock.tick(fps)
+            
 
 
 
@@ -109,9 +113,13 @@ def game_loop():
                         velocity_x = 0
                         velocity_y = -5
 
+                    
                     if event.key == pygame.K_DOWN:
                         velocity_x = 0
                         velocity_y = 5
+                    # TODO:add pause screen.
+                    if event.key == pygame.K_ESCAPE:
+                        pass
             
             snake_x = snake_x + velocity_x
             snake_y = snake_y + velocity_y
@@ -137,13 +145,7 @@ def game_loop():
 
             if len(snk_list)>snk_length:
                 del snk_list[0]
-            # new = (((cur[0]+(x*gridsize))%screen_width), (cur[1]+(y*gridsize))%screen_height)
-            # if len(self.positions) > 2 and new in self.positions[2:]:
-            #     game_over = True
-            # else:
-            #     self.positions.insert(0,new)
-            #     if len(self.positions) > self.length:
-            #         self.positions.pop()
+
             
             for i in range(1,len(snk_list)):
 
@@ -162,6 +164,6 @@ def game_loop():
         clock.tick(fps)
 
     pygame.quit()
-    quit()
+    # quit()
 
 welcome()
